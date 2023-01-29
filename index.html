@@ -1,0 +1,29 @@
+<!DOCKTYPE html>
+<html lang ="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>  
+</html>
+<body>
+
+    <p id="cookie-text">Cookies: 0</p>
+
+    <input type="button" value="Bake a Cookie" onClick="bakeCookie()">
+
+    <script>
+        var coockies = 0;
+
+        function bakeCookie() {
+            coockies += 1;
+            document.getElementById("cookie-text").innerHTML = "Cookies: " + coockies;
+        }
+
+
+
+    </script>
+
+
+</body>    
+</html>

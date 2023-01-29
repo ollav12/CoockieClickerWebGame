@@ -8,16 +8,71 @@
 </html>
 <body>
 
+    
 
     <p id="cookie-text">Cookies: 0</p>
 
     
     <input id="cookieimage" type="image" src="cookie.png" width="200" height="200" cookie onClick="bakeCookie()">
-    <input class="upgrade" type="button" value="Hire a Super baker" cookie onClick="hireSuperBaker()">
-    <input class="upgrade" type="button" value="Clicker Increaser" onClick="increaseClick()">
-    <input class="upgrade" type="button" value="Hire an Auto Baker" onClick="hireAutoBaker()">
 
     <p id="clickPrice"> Click Price: 20</p>
+
+    <div class="container">
+        <button class="upgrade" onclick="hireAutoBaker()" >Hire an Auto Baker</button>
+        <button class="upgrade" onclick="increaseClick()">Clicker Increaser</button>
+        <button class="upgrade">Hire an Auto Baker</button>
+        <button class="upgrade">Right</button>
+        <button class="upgrade">Backwards</button>
+      </div>
+         
+      <style>
+        .container {
+          display: grid;
+          grid-template-columns: 100%;
+          /*grid-template-rows: 100%; */
+          width: 200px;
+          height: 200px;
+          background: #87CEEB;
+        }
+      
+        .button {
+          margin: 20px;
+        }
+      
+        .button:nth-child(1) {
+          grid-column-start: 2;
+          grid-column-end: 3;
+        }
+      
+        .button:nth-child(2) {
+          grid-column-start: 1;
+          grid-column-end: 2;
+          grid-row-start: 2;
+          grid-row-end: 3;
+        }
+      
+        .button:nth-child(3) {
+          grid-column-start: 2;
+          grid-column-end: 3;
+          grid-row-start: 2;
+          grid-row-end: 3;
+          background: red;
+        }
+      
+        .button:nth-child(4) {
+           grid-column-start: 3;
+           grid-column-end: 4;
+           grid-row-start: 2;
+           grid-row-end: 3;
+        }
+      
+        .button:nth-child(5) {
+          grid-column-start: 2;
+          grid-column-end: 3;
+          grid-row-start: 3;
+          grid-row-end: 4;
+        }
+      </style>
 
     <script>
         var cookies = 0;

@@ -4,22 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>  
+    <title>Cookie Clicker</title>  
 </html>
 <body>
 
+
     <p id="cookie-text">Cookies: 0</p>
 
-    <input type="button" value="Bake a Cookie" onClick="bakeCookie()">
+    
+    <input id="cookieimage" type="image" src="cookie.png" width="200" height="200" cookie onClick="bakeCookie()">
+    <input class="upgrade" type="button" value="Hire a Super baker" cookie onClick="hireSuperBaker()">
+    <input class="upgrade" type="button" value="Clicker Increaser" onClick="increaseClick()">
+    <input class="upgrade" type="button" value="Hire an Auto Baker" onClick="hireAutoBaker()">
+
+    <p id="clickPrice"> Click Price: 20</p>
 
     <script>
-        var coockies = 0;
+        var cookies = 0;
+        var counter = 1;
+        var clickPrice = 20;
+        var cps = 0;
+        var devMode = false;
+        const fps = 30;
 
-        function bakeCookie() {
-            coockies += 1;
-            document.getElementById("cookie-text").innerHTML = "Cookies: " + coockies;
+
+
+        if(devMode === true) {
+            cookies = 10000000
         }
 
+
+
+        function hireSuperBaker() {
+
+        }
+
+
+        function bakeCookie() {
+            cookies += counter;
+            document.getElementById("cookie-text").innerHTML = "Cookies: " + Math.round(cookies);
+        }
+
+        function increaseClick() {
+            if(cookies >= clickPrice) {
+                counter += 1;
+                cookies -= clickPrice;
+                clickPrice = Math.round(clickPrice * 1.1);
+                document.getElementById("cookie-text").innerHTML = "Cookies: " + Math.round(cookies);
+                document.getElementById("clickPrice").innerHTML = "Click Price: " + clickPrice;
+            } else {
+                alert("Your dont have enough cookies!");
+            }
+        }
+
+        function hireAutoBaker() {
+            if(cookies >= 50) {
+                cookies -= 50;
+                cps += 1;
+                document.getElementById("cookie-text").innerHTML = "Cookies: " + Math.round(cookies);
+            }
+        }
+
+        setInterval(function() {
+            cookies += cps/fps;
+            document.getElementById("cookie-text").innerHTML = "Cookies: " + Math.round(cookies);
+        }, 1000/fps);
 
 
     </script>

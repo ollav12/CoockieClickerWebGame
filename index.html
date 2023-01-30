@@ -8,18 +8,21 @@
 </html>
 <body>
 
-    
+<meta name="viewport" content="width=900, initial-scale=1">
+<link rel="shortcut icon" href="img/icon.ico" />
 
     <p id="cookie-text">Cookies: 0</p>
+    <p id="cps">per Second (CpS): 0</p>
+    <p id="cpc">per Click (CpC): 1</p>
+
 
     
-    <input id="cookieimage" type="image" src="cookie.png" width="200" height="200" cookie onClick="bakeCookie()">
+    <input id="cookieimage" type="image" src="img/cookie.png" width="200" height="200" onClick="bakeCookie()">
 
-    <p id="clickPrice"> Click Price: 20</p>
 
     <div class="container">
-        <button class="upgrade" onclick="hireAutoBaker()" >Hire an Auto Baker</button>
-        <button class="upgrade" onclick="increaseClick()">Clicker Increaser</button>
+        <button id="cursor" class="upgrade" onclick="cursor()" >Cursor</button>
+        <button id="clickPrice" class="upgrade" onclick="clickIncrease()">Click Increase</button>
         <button class="upgrade">Hire an Auto Baker</button>
         <button class="upgrade">Right</button>
         <button class="upgrade">Backwards</button>
@@ -76,13 +79,15 @@
 
     <script>
         var cookies = 0;
-        var counter = 1;
-        var clickPrice = 20;
-        var cps = 0;
-        var devMode = false;
+        var cpc = 1;
+        var cps = 0.0;
+        var devMode = true;
         const fps = 30;
+        var clickPrice = [100, 500, 10000, 100000, 10000000];
+        i = 0
 
-
+        // Prices
+        var cursorPrice = 15;
 
         if(devMode === true) {
             cookies = 10000000
@@ -96,26 +101,30 @@
 
 
         function bakeCookie() {
-            cookies += counter;
+            cookies += cpc;
             document.getElementById("cookie-text").innerHTML = "Cookies: " + Math.round(cookies);
         }
 
-        function increaseClick() {
-            if(cookies >= clickPrice) {
-                counter += 1;
-                cookies -= clickPrice;
-                clickPrice = Math.round(clickPrice * 1.1);
+        // 
+        function clickIncrease() {
+            if(cookies >= clickPrice[i]) {
+                cpc += cpc;
+                cookies -= clickPrice[i];
+                i += 1
+                document.getElementById("cpc").innerHTML = "per Click (CpC): " + cpc;
                 document.getElementById("cookie-text").innerHTML = "Cookies: " + Math.round(cookies);
-                document.getElementById("clickPrice").innerHTML = "Click Price: " + clickPrice;
-            } else {
-                alert("Your dont have enough cookies!");
+                document.getElementById("clickPrice").innerHTML = "Click Price: " + clickPrice[i];
             }
         }
 
-        function hireAutoBaker() {
-            if(cookies >= 50) {
-                cookies -= 50;
-                cps += 1;
+        // CPS
+        function cursor() {
+            if(cookies >= cursorPrice) {
+                cookies -= cursorPrice;
+                cps += 0.2;
+                cursorPrice *= 1.15
+                document.getElementById("cursor").innerHTML = "Cursor: " + Math.round(cursorPrice);
+                document.getElementById("cps").innerHTML = "per second (CpS): " + parseFloat(cps.toFixed(2));
                 document.getElementById("cookie-text").innerHTML = "Cookies: " + Math.round(cookies);
             }
         }
